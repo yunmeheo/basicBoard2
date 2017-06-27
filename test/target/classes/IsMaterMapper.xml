@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IsMaterMapper">
+
+<insert id="insert">
+INSERT INTO IS_MATER VALUES(
+	ismater_seq.NEXTVAL,
+	#{korName},
+	#{juminNo},
+	#{engName},
+	#{sex},
+	#{lastSchool},
+	#{major},
+	#{graduDate},
+	#{comLag},
+	#{licence1},
+	#{licence2},
+	#{licence3},
+	#{techLev},
+	#{address},
+	#{workDate},
+	#{state},
+	#{image},
+	#{workFlag},
+	#{phone},
+	#{email}
+)
+
+</insert>
+
+
+<select id="selectAll"  resultType="IsMater">
+
+SELECT * FROM IS_MATER
+
+</select>
+
+
+</mapper>
