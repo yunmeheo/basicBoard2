@@ -31,11 +31,23 @@ INSERT INTO IS_MATER VALUES(
 </insert>
 
 
-<select id="selectAll"  resultType="IsMater">
+<select id="selectAll"  resultType="IsMater" parameterType="java.util.Map">
 
-SELECT * FROM IS_MATER
+<![CDATA[
+select * from (SELECT * FROM ( SELECT rownum rnum,KOR_NAME,JUMIN_NO,WORK_DATE,WORK_FLAG,TECH_LEV FROM IS_MATER)
+where rnum <= #{endPage} ) where rnum >= #{startPage}
+]]>
 
 </select>
+
+<select id="selectAllList"  resultType="IsMater">
+select * from IS_MATER
+</select>
+
+
+<!-- select rownum, a.*
+from is_mater a
+where rownum between #{startPage} and #{endPage} -->
 
 
 </mapper>

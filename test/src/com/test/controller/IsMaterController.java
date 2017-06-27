@@ -105,19 +105,28 @@ public class IsMaterController {
 	    	
 	    	
 	    	dao.insert(im);
-	    	
-	    	
 	    	return null;
 	    }
-	    
-	    
+	    int listSize;
 	    @RequestMapping("selectAll.do")
-	    public String selectAll(Model model){
+	    public String selectAll(Model model, 
+	    						int pageno
+	    						){
 	    	
+	    	//총사이즈 한번만 구하기
+	    	int cnt=0;
+	    	if(cnt == 0){
+	    		cnt ++;
+	    		listSize= dao.selectAll().size();
+	    	}
+	    	
+	    	//리스트 10개씩 불러오기
 	    	List <IsMater> list = new ArrayList<>();
-	    	list = dao.selectAll();
-	    	int listSize = list.size();
+	    	int startPage = pageno*10-9;
+	    	int endPage = pageno*10;
+	    	list = dao.selectAll(startPage,endPage);
 	    	
+	    	System.out.println("listSize : "+listSize);
 	    	model.addAttribute("list",list);
 	    	model.addAttribute("listSize",listSize);
 

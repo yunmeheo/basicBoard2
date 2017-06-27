@@ -13,6 +13,27 @@
 
 $(function(){
 	
+	
+	$(".paging").click(function(){
+		var pageno = $(this).attr('id')
+		console.log(pageno);
+		$.ajax({
+			url:'selectAll.do',
+            method: 'GET', 
+            data:{
+            	'pageno': pageno
+			},
+            success:function(responseData){
+            	
+            	$("article").empty();
+                $("article").html(responseData.trim()); 
+          }
+        });  // end ajax
+		return false; 
+		
+	});
+	
+	
 
 	
 });
@@ -82,173 +103,10 @@ $(function(){
 				
 				
 				</c:forEach>
-                   <!--  <tr> 
-                      <td width="35" height="20" align="center"><input type="checkbox" name="checkbox" value="checkbox"></td>
-                      <td width="85" align="center">홍길동</td>
-                      <td width="153" align="center">123456-1234567</td>
-                      <td width="91" align="center">남</td>
-                      <td width="91" align="center">중급</td>
-                      <td width="91" align="center">상태</td>
-                      <td width="94" align="center">근무</td>
-                    </tr>
                     
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox2" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox3" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox4" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox5" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox6" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox7" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox8" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox9" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr>
-                    
-                    
-                    
-                    <tr> 
-                      <td height="20" align="center"><input type="checkbox" name="checkbox10" value="checkbox"></td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                      <td align="center">&nbsp;</td>
-                    </tr>
-                    
-                    
-                    
-                    <tr> 
-                      <td colspan="7" background="image/line_bg.gif"></td>
-                    </tr> -->
-                    
-                    
-                   
                     <tr> 
                       <td height="35" colspan="7" align="center" style="padding-bottom:3">
-                      <!-- <a href="#"><img src="image/prev.gif" width="22" height="15" border="0" align="absmiddle"></a>&nbsp;
-                      <a href="#"><img src="image/pre.gif" width="42" height="15" border="0" align="absmiddle"></a>&nbsp; 
-                        1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 &nbsp;<a href="#">
-                        <img src="image/next.gif" width="42" height="15" border="0" align="absmiddle"></a>&nbsp
-						<a href="#"><img src="image/next_.gif" width="22" height="15" border="0" align="absmiddle"></a> -->
-						
+                      
 						 
                     <%!
 						public Integer toInt(String x){
@@ -265,12 +123,20 @@ $(function(){
 							pageno = 1;
 						}
 						
+						/* 전체리스트 길이 구해오기 시작 */
+						Integer objTotal_record = (Integer)request.getAttribute("listSize");
+						/* int total_record =23;
+						if(objTotal_record==null){
+							total_record=10;
+						}else{ */
+						int total_record=objTotal_record;
+						/* } */
+						System.out.println("objTotal_record" + objTotal_record);
+						/* 전체리스트 길이 구해오기 끝 */
 						
-						int total_record = toInt(request.getParameter("liseSize")); //총 레코드 수
+						
 						int page_per_record_cnt = 10;  //페이지 당 레코드 수
 						int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]
-					//					  									  [6],[7],[8],[9],[10]											
-					
 						int record_end_no = pageno*page_per_record_cnt;				
 						int record_start_no = record_end_no-(page_per_record_cnt-1);
 						if(record_end_no>total_record){
@@ -343,10 +209,14 @@ $(function(){
 					<hr />
 					
 					
-					<a href="pase.jsp?pageno=1">[맨앞으로]</a>
-					<a href="pase.jsp?pageno=<%=prev_pageno%>">[이전]</a> 
+				<a href=""><img src="image/prev.gif" width="22" height="15" border="0" align="absmiddle"></a>&nbsp;
+					
+                <a href=""><img src="image/pre.gif" width="42" height="15" border="0" align="absmiddle"></a>&nbsp; 
+                                            
+                        <a href="" class="prev">[이전]</a> 
+					
 					<%for(int i =page_sno;i<=page_eno;i++){%>
-						<a href="pase.jsp?pageno=<%=i %>">
+						<a href="" class="paging" id="<%=i%>">
 							<%if(pageno == i){ %>
 								[<%=i %>]
 							<%}else{ %>
@@ -355,34 +225,41 @@ $(function(){
 						</a> 
 					<%--	콤마	 --%>	
 						<%if(i<page_eno){ %>
-							,
+							|
 						<%} %>
 					<%} %>
 					 
-					<a href="pase.jsp?pageno=<%=next_pageno%>" >[다음]</a>
-					<a href="pase.jsp?pageno=<%=total_page %>">[맨뒤로]</a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+					<a href="" class="next">[다음]</a> &nbsp;
+                        
+                        
+                  <a href=""><img src="image/next.gif" width="42" height="15" border="0" align="absmiddle"></a>&nbsp
+                        
+				  <a href=""><img src="image/next_.gif" width="22" height="15" border="0" align="absmiddle"></a>
+					
+					
+					
+					
+					<!-- <a href="selectAll.do?pageno=1">[맨앞으로]</a> -->
+					<%-- <a href="selectAll.do?pageno=<%=prev_pageno%>">[이전]</a> 
+					
+					<%for(int i =page_sno;i<=page_eno;i++){%>
+						<a href="selectAll.do?pageno=<%=i %>">
+							<%if(pageno == i){ %>
+								[<%=i %>]
+							<%}else{ %>
+								<%=i %>
+							<%} %>
+						</a> 
+						콤마		
+						<%if(i<page_eno){ %>
+							|
+						<%} %>
+					<%} %>
+					 
+					<a href="selectAll.do?pageno=<%=next_pageno%>" >[다음]</a> --%>
+					<%-- <a href="selectAll.do?pageno=<%=total_page %>">[맨뒤로]</a> --%>
                     
                     </td>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     
                     </tr>
                   </table>

@@ -11,31 +11,51 @@ $(function(){
 	
 	var $header = $('header');
 	 var $a =$header.find("a");
-     $a.click(function(){
-                 
+	 
+	 $a.click(function(){
+		 var url = $(this).attr("href");
+		 if(url =="list.jsp"){
+      	   $.ajax({
+      		   url : "selectAll.do",
+      		   method: 'GET', 
+      		   data:{'pageno':1},
+      		   success : function(responseData){
+      			   $("article").empty();
+      			   $("article").html(responseData.trim()); 
+      			   console.log("하하 불러옴");
+      		   }
+      	   }); return false;
+      	   
+         }
+		 
+	       
+	       $.ajax({url: url,
+	           method: 'GET', 
+	           success:function(responseData){
+	        	   console.log("1차성공 ");
+	             $("article").empty();
+	             $("article").html(responseData.trim()); 
+	         }
+	       }); // end ajax
+	       return false;
+	     });
+     /* $a.click(function(){
        var url = $(this).attr("href");
        $.ajax({url: url,
            method: 'GET', 
            success:function(responseData){
-
+        	   console.log("1차성공 ");
            if(url =="list.jsp"){
-             
         	   $.ajax({
-        		   
         		   url : "selectAll.do",
+        		   method: 'GET', 
+        		   data:{'pageno':1},
         		   success : function(responseData){
-        			   
         			   $("article").empty();
         			   $("article").html(responseData.trim()); 
         			   console.log("하하 불러옴");
-        			   
         		   }
-        		   
-        		   
         	   }); return false;
-        	   
-        	   
-        	   
         	   
            }else{
              $("article").empty();
@@ -46,9 +66,7 @@ $(function(){
        
        }); // end ajax
        return false;
-     });   //end click
-     
-     
+     }); */   //end click
      
 	
 	/* $('.menu').find('.insert').click(function(){

@@ -16,6 +16,9 @@ public interface IsMaterDAO {
 	 * 모든사원의 정보 불러오기
 	 * @return   모든사원정보
 	 */
+	public List<IsMater> selectAll(int a ,int b);
+	
 	public List<IsMater> selectAll();
+
 
 }
