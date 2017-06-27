@@ -5,27 +5,25 @@
 <mapper namespace="IsMaterMapper">
 
 <insert id="insert">
-INSERT INTO IS_MATER VALUES(
+INSERT INTO ISMATER VALUES(
 	ismater_seq.NEXTVAL,
-	#{korName},
-	#{juminNo},
-	#{engName},
-	#{sex},
-	#{lastSchool},
-	#{major},
-	#{graduDate},
-	#{comLag},
-	#{licence1},
-	#{licence2},
-	#{licence3},
-	#{techLev},
-	#{address},
-	#{workDate},
-	#{state},
-	#{image},
-	#{workFlag},
-	#{phone},
-	#{email}
+	#{kor_name},
+    #{eng_name},
+    #{chn_name},
+    #{jumin_no},
+    #{image_name},
+    #{bir},
+    #{sex},
+    #{marital_status},
+    #{work_date},
+    #{pay_type},
+    #{work_flag},
+    #{join_type},
+    #{address},
+    #{phone},
+	#{email},
+	#{tech_lev},
+	#{drinkingCapacity}
 )
 
 </insert>
@@ -34,14 +32,14 @@ INSERT INTO IS_MATER VALUES(
 <select id="selectAll"  resultType="IsMater" parameterType="java.util.Map">
 
 <![CDATA[
-select * from (SELECT * FROM ( SELECT rownum rnum,KOR_NAME,JUMIN_NO,WORK_DATE,WORK_FLAG,TECH_LEV FROM IS_MATER)
+select * from (SELECT * FROM ( SELECT rownum rnum,kor_name,jumin_no,work_date,work_flag,tech_lev FROM ISMATER)
 where rnum <= #{endPage} ) where rnum >= #{startPage}
 ]]>
 
 </select>
 
 <select id="selectAllList"  resultType="IsMater">
-select * from IS_MATER
+select * from ISMATER
 </select>
 
 

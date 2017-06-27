@@ -6,10 +6,10 @@
 <html>
 <head>
 
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css" padding :50px;>
 </head>
 <style>
-.fileUpLoad {display: none;}
+.fileUpLoad {display: none; border: 1px solid; position: absolute; top :200px ; left: 200px; background-color: white;}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -17,17 +17,15 @@
 
 
 $(function(){
-	
-	//var no = $("input[name=]");
-	var $korName= $("input[name=textfield4]");  //한글이름
-	var $engName= $("input[name=textfield22]");   //영문이름
-	var $lastSchool  = $("input[name=textfield34]");  //*** 한문이름
-	
-	var $juminNo1= $("input[name=textfield323]");  //앞 주민번호
-	var $juminNo2= $("input[name=textfield3222]"); //뒤 주민번호
+
+	var $kor_name= $("input[name=textfield4]");  //한글이름
+	var $eng_name= $("input[name=textfield22]");   //영문이름
+	var $chn_name  = $("input[name=textfield34]");  //*** 한문이름
+	var $jumin_no1= $("input[name=textfield323]");  //앞 주민번호
+	var $jumin_no2= $("input[name=textfield3222]"); //뒤 주민번호
 	
 	/* 이미지올리기 재료들 */
-	//var $image= $("input[name=textfield33]");   //파일명
+	var $image_name= $("input[name=textfield33]");   //파일명
 	var $btSearchFile = $("img[name=btSearchFile]");  // img인데...  파일검색버튼
 	
 	/* 모든 라디오버튼 */
@@ -35,33 +33,23 @@ $(function(){
 	
 	
 	/* 생년월일 재료들 */
-	//var major  = $("input[name=]");  //***생년월일
-	var $textfield332= $("input[name=textfield332]"); // 년
-	var $textfield3322= $("input[name=textfield3322]"); // 월
-	var $textfield33222= $("input[name=textfield33222]");  //일
-	var $solarCalendar= $("radiobutton [name=solarCalendar]");// 양력  
-	var $lunarCalendar= $("radiobutton [name=lunarCalendar]");  //음력  
+	var $year= $("input[name=textfield332]"); // 년
+	var $month= $("input[name=textfield3322]"); // 월
+	var $day= $("input[name=textfield33222]");  //일
 	
-	/* 성별재료들*/
-	//var sex
-	var $man= $("radiobutton[name=man]");
-	var $woman= $("radiobutton[name=woman]");
+	/* 라디오 */
+	var $bir = $(':input[name=bir]:checked');
+	var $sex=$(":input:radio[name=sex]:checked");
+	var $marital_status =$('input[name=marital_status]:checked');
 	
-	/* 결혼유무 재료들 */
-	//var graduDate= $("input[name=]");    //***결혼유무od
-	var $single= $("radiobutton[name=single]")
-	var $married= $("radiobutton[name=married]")
-	
-	var $workDate= $("input[name=textfield3323]");   //년차
-	//var comLag= $("input[name=]");  null예정
-	var $licence1  = $("select[name=select]"); //***급여지금유형
-	var $workFlag= $("select[name=select2]");  // 희망직무
-	var $licence2  = $("select[name=select4]"); //***입사유형
+	var $work_date= $("input[name=textfield3323]");   //년차
+	var $pay_type  = $("select[name=select]"); //***급여지금유형
+	var $work_flag= $("select[name=select2]");  // 희망직무
+	var $join_type  = $("select[name=select4]"); //***입사유형
 	
 	/* 주소재료들 */
 	var $address1= $("input[name=textfield3324]");
 	var $address2= $("input[name=textfield333]");
-	
 	
 	/* 연락처재료들 */
 	var $phone1= $("input[name=textfield33242]");
@@ -69,14 +57,9 @@ $(function(){
 	var $phone3= $("input[name=textfield332423]");
 	
 	var $email= $("input[name=textfield332424]");  // 이메일
+	var $tech_lev= $("input[name=textfield3324242]");
+	var $drinkingCapacity = $("input[name=textfield33242422]");  //***주량
 	
-	var $techLev= $("input[name=textfield3324242]");
-	
-	
-	//var state= $("input[name=]");  null예정
-	
-	
-	var $licence3 = $("input[name=textfield33242422]");  //***주량
 	
 	
 	//파일검색 클릭시 파일 업로드창 띄우기
@@ -86,13 +69,12 @@ $(function(){
 	});  //end for click
 	
 	
-	
 	//파일업로드하기
 	$('#fileForm').submit(function fileSubmit() {
 	    var formData = new FormData($("#fileForm")[0]);
 	    var $image= $("input[name=textfield33]");   //파일명
-	    //$image.val('이름을 입력하세요');
-	    
+	    event.preventDefault();
+
 	    $.ajax({
 	        type : 'post',
 	        url : 'fileUpload.do',
@@ -100,24 +82,24 @@ $(function(){
 	        processData : false,
 	        contentType : false,
 	        success : function(responseData) {
-	        	
 	            alert("파일 업로드하였습니다.");
 	            $(".fileUpLoad").hide();
 	            
+	         	// 파일명
 	            var fileValue = $("#fileUp").val().split("\\");
-	            var fileName = fileValue[fileValue.length-1]; // 파일명
+	            var fileName = fileValue[fileValue.length-1]; 
 	            
 	            //파일명 넣기  -  구현중
 	            $image.val(fileName);
 	            console.log("파일명 : "+fileName);
+	            console.log("responseData : "+responseData);
 	            
-	            
-	        },
+	        } ,
 	        error : function(error) {
 	            alert("파일 업로드에 실패하였습니다.");
 	            console.log(error);
 	            console.log(error.status);
-	        }
+	        } 
 	    });
 	});
 	
@@ -129,34 +111,37 @@ $(function(){
 		$.ajax({
 			url : "insert.do",
 			data : {
-				korName : $korName.val(),
-				engName:$engName.val(),
-				chnName:$lastSchool.val(),
-				juminNo1:$juminNo1.val(),
-				juminNo2:$juminNo2.val(),
+				'kor_name' : $kor_name.val(),
+				'eng_name':$eng_name.val(),
+				'chn_name':$chn_name.val(),
+				'jumin_no1':$jumin_no1.val(),
+				'jumin_no2':$jumin_no2.val(),
+				'image_name':$image_name.val(),
 				
-				year:$textfield332.val(),
-				month:$textfield3322.val(),
-				day:$textfield33222.val(),
+				'year':$year.val(),
+				'month':$month.val(),
+				'day':$day.val(),
+				'bir':$bir.val(),
+				
+				'sex' : $sex.val(),
+				'marital_status' : $marital_status.val(),
+	
+				'work_date':$work_date.val(),
+				'pay_type':$pay_type.val(),
+				'work_flag':$work_flag.val(),
+				'join_type':$join_type.val(),
+	
+				'address1':$address1.val(),
+				'address2':$address2.val(),
+	
+				'phone1':$phone1.val(),
+				'phone2':$phone2.val(),
+				'phone3':$phone3.val(),
+	
+				'email':$email.val(),
+				'tech_lev':$tech_lev.val(),
+				'drinkingCapacity':$drinkingCapacity.val()
 
-				//모든라디오버튼
-				radiobutton	:radiobutton.val(),
-	
-				workDate:$workDate.val(),
-				salarytype:$licence1.val(),
-				workFlag:$workFlag.val(),
-				jointype:$licence2.val(),
-	
-				address1:$address1.val(),
-				address2:$address2.val(),
-	
-				phone1	:$phone1.val(),
-				phone2:$phone2.val(),
-				phone3:$phone3.val(),
-	
-				email:$email.val(),
-				techLev:$techLev.val(),
-				drinkingCapacity:$licence3.val()
 				},
 				success : function(reseponseDate){
 				
@@ -174,91 +159,6 @@ $(function(){
 });  // end for all function
 
 
-/* function fileSubmit() {
-    var formData = new FormData($("#fileForm")[0]);
-    var $image= $("input[name=textfield33]"); 
-    $.ajax({
-        type : 'post',
-        url : 'fileUpload.do',
-        data : formData,
-        processData : false,
-        contentType : false,
-        success : function(html) {
-            alert("파일 업로드하였습니다.");
-            
-            //파일 업로드 성공시 $('#uploadedList'); 에 이미지 띄우기 해야함
-            $(".fileUpLoad").hide();
-            var fileUp = $('#fileUp').val();
-            console.log(fileUp);
-            $image.val("파일명");
-        },
-        error : function(error) {
-            alert("파일 업로드에 실패하였습니다.");
-            console.log(error);
-            console.log(error.status);
-        }
-    });
-}
- */
-
-
-
-
-
-
-
-
-
-/* textfield4  // 한글이름
-textfield22   //영문이름
-textfield34  // 한문이름
-
-textfield323 - textfield3222  // 주민번호
-
-
-textfield33  // 파일명
-btSearchFile  // 파일검색버튼
-
-textfield332  //년
-textfield3322  //월
-textfield33222  //일
-
-//radiobutton 
-
-solarCalendar  // 양력 
-lunarCalendar  //음력 
-man  //남자  
-woman  // 여자 
-single  //미혼  
-married  //기혼  
-
-
- textfield3323  //년차  
-
- select//급여지급유형  
-
-
- select2//희망직무  
-
-  //select3   // 중복항목  급여지급유형 
-
- select4//입사유형  
-
-//주소 
-textfield3324  //주소   
-textfield333  //주소  
-
-//전화번호  
-textfield33242   // 
-textfield332422      //
-textfield332423//
-
-textfield332424  //이메일   
-textfield3324242  //기술등급 
-textfield33242422  //주량    
-
-
- */
 </script>
 
 
@@ -387,7 +287,9 @@ textfield33242422  //주량
                         </td>
                     </tr>
                     <tr> 
-                      <td bgcolor="#E4EBF1"><table width="500" border="0" cellspacing="1" cellpadding="1">
+                      <td bgcolor="#E4EBF1">
+                      
+                      <table width="500" border="0" cellspacing="1" cellpadding="1">
                           <tr> 
                             <td width="102" align="right"><strong>생년월일 :&nbsp;</strong></td>
                             <td width="391"><input name="textfield332" type="text" size="10">
@@ -396,12 +298,14 @@ textfield33242422  //주량
                               월 
                               <input name="textfield33222" type="text" size="7">
                               일 ( 
-                              <input type="radio" name="radiobutton" value="solarCalendar">
+                              <input type="radio" name="bir" value="solarCalendar">
                               양력 
-                              <input type="radio" name="radiobutton" value="lunarCalendar">
+                              <input type="radio" name="bir" value="lunarCalendar">
                               음력 )</td>
                           </tr>
-                        </table></td>
+                        </table>
+                        
+                        </td>
                     </tr>
                     <tr> 
                       <td bgcolor="#E4EBF1"><table width="500" border="0" cellspacing="1" cellpadding="1">
@@ -409,9 +313,9 @@ textfield33242422  //주량
                             <td width="102" align="right"><strong>성별 :&nbsp; </strong></td>
                             <td width="391"> 
                             
-                           	  <input type="radio" name="radiobutton" value="man">
+                           	  <input type="radio" name="sex" value="m">
                            	  남자
-                              <input type="radio" name="radiobutton" value="woman">
+                              <input type="radio" name="sex" value="w">
                               여자</td>
                           </tr>
                         </table></td>
@@ -420,9 +324,11 @@ textfield33242422  //주량
                       <td bgcolor="#E4EBF1"><table width="500" border="0" cellspacing="1" cellpadding="1">
                           <tr> 
                             <td width="102" align="right"><strong>결혼유무 :&nbsp;</strong></td>
-                            <td width="391"> <input type="radio" name="radiobutton" value="married">
+                            <td width="391"> 
+                            
+                            <input type="radio" name="marital_status" value="married">
                               기혼 
-                              <input type="radio" name="radiobutton" value="single">
+                              <input type="radio" name="marital_status" value="single">
                               미혼</td>
                           </tr>
                         </table></td>

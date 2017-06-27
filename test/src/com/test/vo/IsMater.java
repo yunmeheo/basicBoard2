@@ -2,8 +2,25 @@ package com.test.vo;
 
 public class IsMater {
 	
-	
-	String no;// iS_MATER;//	NO	Varchar2	4	-	-	1	-	-	-
+	String no;//                VARCHAR2(4) NOT NULL,
+    String kor_name;//   KOR_NAME           VARCHAR2(20) NULL,한글이름
+    String eng_name;//   ENG_NAME    ;//        VARCHAR2(20) NULL,영문이름
+    String chn_name;//   CHN_NAME    ;//         VARCHAR2(20) NULL,영문이름
+    String jumin_no;//   JUMIN_NO    ;//         VARCHAR2(14) NULL,주민번호
+    String image_name;//   IMAGE_NAME   ;//        VARCHAR2(50) NULL,사진파일명
+    String bir;//   BIR   ;//               VARCHAR2(15) NULL,     ***생년월일
+    String sex;//   SEX ;//                 VARCHAR2(1) NULL,성별
+    String marital_status;//    MARITAL_STATUS  ;//     VARCHAR2(1) NULL, 결혼여부
+    String work_date;//    WORK_DATE   ;//         VARCHAR2(4) NULL,년차
+    String pay_type;//    PAY_TYPE   ;//          VARCHAR2(4) NULL,급여지금유형
+    String work_flag;//   WORK_FLAG  ;//          VARCHAR2(2) NULL,희망직무
+    String join_type;//     JOIN_TYPE   ;//         VARCHAR2(2) NULL,입사유형
+    String address;//    ADDRESS  ;//            VARCHAR2(20) NULL,주소
+    String phone;//    PHONE ;//               VARCHAR2(15) NULL,연락처
+	String email;//    EMAIL;//                VARCHAR2(50) NULL 이메일
+	String tech_lev;//    TECH_LEV ;//            VARCHAR2(10) NULL,기술등급
+	String drinkingCapacity;//             VARCHAR2(10) NULL,주량
+	/*String no;// iS_MATER;//	NO	Varchar2	4	-	-	1	-	-	-
 	String korName; //KOR_NAME;//	Varchar2	20	-	-	-	널 가능	-	-
 	String juminNo;//JUMIN_NO;//	Varchar2	14	-	-	-	널 가능	-	-
 	String engName;//ENG_NAME;//	Varchar2	20	-	-	-	널 가능	-	-
@@ -23,254 +40,156 @@ public class IsMater {
 	String workFlag;//WORK_FLAG;//	Varchar2	1	-	-	-	널 가능	-	-
 	String phone;//PHONE;//	Varchar2	15	-	-	-	널 가능	-	-
 	String email;//EMAIL;//	Varchar2	50	-
+*/
 	
+	
+	
+	public IsMater(String kor_name, String eng_name, String chn_name, String jumin_no, String image_name,
+			String bir, String sex, String marital_status, String work_date, String pay_type, String work_flag,
+			String join_type, String address, String phone, String email, String tech_lev, String drinkingCapacity) {
+		super();
+		this.kor_name = kor_name;
+		this.eng_name = eng_name;
+		this.chn_name = chn_name;
+		this.jumin_no = jumin_no;
+		this.image_name = image_name;
+		this.bir = bir;
+		this.sex = sex;
+		this.marital_status = marital_status;
+		this.work_date = work_date;
+		this.pay_type = pay_type;
+		this.work_flag = work_flag;
+		this.join_type = join_type;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.tech_lev = tech_lev;
+		this.drinkingCapacity = drinkingCapacity;
+	}
 	
 	public IsMater() {
 		super();
 	}
-	
-	
-	
-
-	//등록시
-	public IsMater(String korName, String juminNo, String engName, String sex, String lastSchool,
-			String major, String graduDate, String comLag, String licence1, String licence2, String licence3,
-			String techLev, String address, String workDate, String state, String image, String workFlag, String phone,
-			String email) {
-		super();
-		this.korName = korName;
-		this.juminNo = juminNo;
-		this.engName = engName;
-		this.sex = sex;
-		this.lastSchool = lastSchool;
-		this.major = major;
-		this.graduDate = graduDate;
-		this.comLag = comLag;
-		this.licence1 = licence1;
-		this.licence2 = licence2;
-		this.licence3 = licence3;
-		this.techLev = techLev;
-		this.address = address;
-		this.workDate = workDate;
-		this.state = state;
-		this.image = image;
-		this.workFlag = workFlag;
-		this.phone = phone;
-		this.email = email;
-	}
-
-
-
 
 
 	public String getNo() {
 		return no;
 	}
-
-
+	
 	public void setNo(String no) {
 		this.no = no;
 	}
-
-
-	public String getKorName() {
-		return korName;
+	public String getKor_name() {
+		return kor_name;
 	}
-
-
-	public void setKorName(String korName) {
-		this.korName = korName;
+	public void setKor_name(String kor_name) {
+		this.kor_name = kor_name;
 	}
-
-
-	public String getJuminNo() {
-		return juminNo;
+	public String getEng_name() {
+		return eng_name;
 	}
-
-
-	public void setJuminNo(String juminNo) {
-		this.juminNo = juminNo;
+	public void setEng_name(String eng_name) {
+		this.eng_name = eng_name;
 	}
-
-
-	public String getEngName() {
-		return engName;
+	public String getChn_name() {
+		return chn_name;
 	}
-
-
-	public void setEngName(String engName) {
-		this.engName = engName;
+	public void setChn_name(String chn_name) {
+		this.chn_name = chn_name;
 	}
-
-
+	public String getJumin_no() {
+		return jumin_no;
+	}
+	public void setJumin_no(String jumin_no) {
+		this.jumin_no = jumin_no;
+	}
+	public String getImage_name() {
+		return image_name;
+	}
+	public void setImage_name(String image_name) {
+		this.image_name = image_name;
+	}
+	public String getBir() {
+		return bir;
+	}
+	public void setBir(String bir) {
+		this.bir = bir;
+	}
 	public String getSex() {
 		return sex;
 	}
-
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-
-	public String getLastSchool() {
-		return lastSchool;
+	public String getMarital_status() {
+		return marital_status;
 	}
-
-
-	public void setLastSchool(String lastSchool) {
-		this.lastSchool = lastSchool;
+	public void setMarital_status(String marital_status) {
+		this.marital_status = marital_status;
 	}
-
-
-	public String getMajor() {
-		return major;
+	public String getWork_date() {
+		return work_date;
 	}
-
-
-	public void setMajor(String major) {
-		this.major = major;
+	public void setWork_date(String work_date) {
+		this.work_date = work_date;
 	}
-
-
-	public String getGraduDate() {
-		return graduDate;
+	public String getPay_type() {
+		return pay_type;
 	}
-
-
-	public void setGraduDate(String graduDate) {
-		this.graduDate = graduDate;
+	public void setPay_type(String pay_type) {
+		this.pay_type = pay_type;
 	}
-
-
-	public String getComLag() {
-		return comLag;
+	public String getWork_flag() {
+		return work_flag;
 	}
-
-
-	public void setComLag(String comLag) {
-		this.comLag = comLag;
+	public void setWork_flag(String work_flag) {
+		this.work_flag = work_flag;
 	}
-
-
-	public String getLicence1() {
-		return licence1;
+	public String getJoin_type() {
+		return join_type;
 	}
-
-
-	public void setLicence1(String licence1) {
-		this.licence1 = licence1;
+	public void setJoin_type(String join_type) {
+		this.join_type = join_type;
 	}
-
-
-	public String getLicence2() {
-		return licence2;
-	}
-
-
-	public void setLicence2(String licence2) {
-		this.licence2 = licence2;
-	}
-
-
-	public String getLicence3() {
-		return licence3;
-	}
-
-
-	public void setLicence3(String licence3) {
-		this.licence3 = licence3;
-	}
-
-
-	public String getTechLev() {
-		return techLev;
-	}
-
-
-	public void setTechLev(String techLev) {
-		this.techLev = techLev;
-	}
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-	public String getWorkDate() {
-		return workDate;
-	}
-
-
-	public void setWorkDate(String workDate) {
-		this.workDate = workDate;
-	}
-
-
-	public String getState() {
-		return state;
-	}
-
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-
-	public String getImage() {
-		return image;
-	}
-
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-
-	public String getWorkFlag() {
-		return workFlag;
-	}
-
-
-	public void setWorkFlag(String workFlag) {
-		this.workFlag = workFlag;
-	}
-
-
 	public String getPhone() {
 		return phone;
 	}
-
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
+	public String getTech_lev() {
+		return tech_lev;
+	}
+	public void setTech_lev(String tech_lev) {
+		this.tech_lev = tech_lev;
+	}
+	public String getDrinkingCapacity() {
+		return drinkingCapacity;
+	}
+	public void setDrinkingCapacity(String drinkingCapacity) {
+		this.drinkingCapacity = drinkingCapacity;
+	}
 	@Override
 	public String toString() {
-		return "IsMater [no=" + no + ", korName=" + korName + ", juminNo=" + juminNo + ", engName=" + engName + ", sex="
-				+ sex + ", lastSchool=" + lastSchool + ", major=" + major + ", graduDate=" + graduDate + ", comLag="
-				+ comLag + ", licence1=" + licence1 + ", licence2=" + licence2 + ", licence3=" + licence3 + ", techLev="
-				+ techLev + ", address=" + address + ", workDate=" + workDate + ", state=" + state + ", image=" + image
-				+ ", workFlag=" + workFlag + ", phone=" + phone + ", email=" + email + "]";
-	}
+		return "IsMater [no=" + no + ", kor_name=" + kor_name + ", eng_name=" + eng_name + ", chn_name=" + chn_name
+				+ ", jumin_no=" + jumin_no + ", image_name=" + image_name + ", bir=" + bir + ", sex=" + sex
+				+ ", marital_status=" + marital_status + ", work_date=" + work_date + ", pay_type=" + pay_type
+				+ ", work_flag=" + work_flag + ", join_type=" + join_type + ", address=" + address + ", phone=" + phone
+				+ ", email=" + email + ", tech_lev=" + tech_lev + ", drinkingCapacity=" + drinkingCapacity + "]";
+	}	
+
 	
 	
 	

@@ -26,36 +26,43 @@ public class IsMaterController {
 	
 	 @RequestMapping(value = "/ajaxUpload.do")
 	    public String ajaxUpload() {
-	        return "page4.jsp";
+	        return "insert.jsp";
 	    }
 	     
 	    @RequestMapping(value = "/fileUpload.do")
 	    public String fileUp(MultipartHttpServletRequest multi) {
 	         
 	    	System.out.println("file up 들어옴");
+	    	
 	        // 저장 경로 설정
 	        String root = multi.getSession().getServletContext().getRealPath("/");
-	        String path = root+"";
+	        String path = root+"upload";
+	        
+	        System.out.println("실제 저장경로 : " +path);
 	         
 	        String newFileName = ""; // 업로드 되는 파일명
 	         
+	        //path에 폴더가 없을경우 생성한다.
 	        File dir = new File(path);
+	        System.out.println("dir  ??  : " +dir);
 	        if(!dir.isDirectory()){
-	            dir.mkdir();
+	        	dir.mkdir();
 	        }
 	         
+	        //파일이름 가져오기
 	        Iterator<String> files = multi.getFileNames();
 	        while(files.hasNext()){
+	        	
 	            String uploadFile = files.next();
-	                         
 	            MultipartFile mFile = multi.getFile(uploadFile);
 	            String fileName = mFile.getOriginalFilename();
 	            System.out.println("실제 파일 이름 : " +fileName);
-	            newFileName = System.currentTimeMillis()+"."
-	                    +fileName.substring(fileName.lastIndexOf(".")+1);
-	             
+	            
+	            newFileName = System.currentTimeMillis()+"."+fileName.substring(fileName.lastIndexOf(".")+1);
+	            //System.out.println("저장되는 파일 이름 : " +newFileName);
 	            try {
 	                mFile.transferTo(new File(path+newFileName));
+	                System.out.println("try 들어옴");
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }
@@ -66,47 +73,49 @@ public class IsMaterController {
 
 	    @RequestMapping("/insert.do")
 	   public String insert(Model model,
-			   String korName,
-			   String engName,
-			   String chnName,
-			   String juminNo1,
-			   String juminNo2,
+			   String kor_name,
+			   String eng_name,
+			   String chn_name,
+			   String jumin_no1,
+			   String jumin_no2,
+			   String image_name,
 			   String year,
 			   String month,
 			   String day,
-			   String radiobutton,
-			   String workDate,
-			   String salarytype,
-			   String workFlag,
-			   String jointype,
+			   String sex,
+			   String marital_status,
+			   String work_date,
+			   String pay_type,
+			   String work_flag,
+			   String join_type,
 			   String address1,
 			   String address2,
 			   String phone1,
 			   String phone2,
 			   String phone3,
 			   String email,
-			   String techLev,
+			   String tech_lev,
 			   String drinkingCapacity){
 	    	
-	    	String juminNo= juminNo1+"-"+juminNo2;
+	    	String jumin_no= jumin_no1+"-"+jumin_no2;
 	    	String bir = year+"/"+month+"/"+day;
 	    	String address = address1 +address2;
 	    	String phone = phone1+"-"+phone2+"-"+phone3;
 	    	
-	    	System.out.println("workFlag :"+workFlag);
+	    	System.out.println("pay_type :"+pay_type);
 	    	
 	    	
-	    	IsMater im = new IsMater(korName,juminNo,engName,"w",chnName,bir,"Y","Y",salarytype,jointype,
-	    			drinkingCapacity,techLev,address,workDate,"Y","Y",workFlag,phone,email);
-//	    		public IsMater(String korName, String juminNo, String engName, String sex, String lastSchool(chnName),
-//	    				String major(bir), String graduDate(marital_status 결혼여부), String comLag, String licence1, String licence2, String licence3,
-//	    				String techLev, String address, String workDate, String state, String image, String workFlag, String phone,
-//	    				String email)	
+	    	IsMater im = new IsMater(kor_name,eng_name, chn_name,jumin_no, image_name,
+	    			bir, "w", "y", work_date, pay_type, work_flag,
+	    			join_type, address, phone, email, tech_lev, drinkingCapacity);
 	    	
-	    	
+	    	System.out.println(im);
+
 	    	dao.insert(im);
 	    	return null;
 	    }
+	    
+	    
 	    int listSize;
 	    @RequestMapping("selectAll.do")
 	    public String selectAll(Model model, 
