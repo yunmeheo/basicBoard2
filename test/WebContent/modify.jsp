@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html; charset=UTF-8"%>
+﻿<%@page import="com.test.vo.IsMater"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 
@@ -14,6 +15,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+
+
+<%IsMater im = (IsMater)session.getAttribute("im");%>
+
 
 
 $(function(){
@@ -38,9 +43,9 @@ $(function(){
 	var $day= $("input[name=textfield33222]");  //일
 	
 	/* 라디오 */
-	/* var $bir = $(':input[name=bir]:checked');
+	var $bir = $('input:radio[name=bir]:checked');
 	var $sex=$(":input:radio[name=sex]:checked");
-	var $marital_status =$('input[name=marital_status]:checked'); */
+	var $marital_status =$('input[name=marital_status]:checked');
 	
 	var $work_date= $("input[name=textfield3323]");   //년차
 	var $pay_type  = $("select[name=select]"); //***급여지금유형
@@ -85,39 +90,14 @@ $(function(){
 	            alert("파일 업로드하였습니다.");
 	            $(".fileUpLoad").hide();
 	            
-	         	// 파일명 채워넣기
+	         	// 파일명
 	            var fileValue = $("#fileUp").val().split("\\");
 	            var fileName = fileValue[fileValue.length-1]; 
+	            
+	            //파일명 넣기  
 	            $image.val(fileName);
 	            console.log("파일명 : "+fileName);
 	            console.log("responseData : "+responseData);
-	            
-	            
-	            //이미지 보여주기 - 구현중
-	            
-            /* 	$.ajax({
-		      		   url : "displayFile.do",
-		      		   method: 'GET', 
-		      		   data:{'pageno':1},
-		      		   success : function(responseData){
-		      			 var str = "";
-		                 // 이미지 파일이면 썸네일 이미지 출력
-		                 if(checkImageType(data)){ 
-		                     str = "<div><a href='${path}/upload/displayFile?fileName="+getImageLink(data)+"'>";
-		                     str += "<img src='${path}/upload/displayFile?fileName="+data+"'></a>";
-		                 // 일반파일이면 다운로드링크
-		                 } else { 
-		                     str = "<div><a href='${path}/upload/displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>";
-		                 }
-		                 // 삭제 버튼
-		                 str += "<span data-src="+data+">[삭제]</span></div>";
-		                 $(".uploadedList").append(str);
-		      		   }
-		      	   }); return false; */
-            
-	            
-	            $('#uploadedImg').html('<img src="images.jpg" border="0" alt="" />');
-	            
 	            
 	        } ,
 	        error : function(error) {
@@ -130,21 +110,12 @@ $(function(){
 	
 	
 	//등록버튼 	
-	$('#insert').click(function(){
+	$('#modify').click(function(){
 		console.log("등록클릭");
-		
-		/* 라디오버튼 */
-		var $bir = $("input:radio[name=bir]:checked");
-		var $sex=$(":input:radio[name=sex]:checked");
-		var $marital_status =$('input:radio[name=marital_status]:checked'); 
-		
-		console.log($bir.val());
-		console.log($sex.val());
-		console.log($marital_status.val());
-		
 		$.ajax({
-			url : "insert.do",
+			url : "modify.do",
 			data : {
+				'no' : <%=im.getNo()%>,
 				'kor_name' : $kor_name.val(),
 				'eng_name':$eng_name.val(),
 				'chn_name':$chn_name.val(),
@@ -155,7 +126,7 @@ $(function(){
 				'year':$year.val(),
 				'month':$month.val(),
 				'day':$day.val(),
-				'bir_type':$bir.val(),
+				'bir':$bir.val(),
 				
 				'sex' : $sex.val(),
 				'marital_status' : $marital_status.val(),
@@ -182,7 +153,6 @@ $(function(){
 					var result = responseData.trim();
 					console.log(result);
 					if(result == "1"){
-						
 						alert("입력되었습니다.");
 						
 						//완료 후 리스트로 보내기
@@ -197,6 +167,7 @@ $(function(){
 				      	   }); return false;
 						
 						
+						
 					}else{
 						alert("입력실패, 다시 시도해주세요.");
 					}
@@ -206,24 +177,9 @@ $(function(){
 	});
 	
 	
+	//전체데이터 입력보내긱
 	
 	
-	/* var $bir="";
-	$("input:radio[name=bir]").click(function(){
-		console.log($(this).val());
-		var $bir = $(this).val();
-	});
-	
-	$('.testBt').click(function(){
-		
-		console.log($bir);
-		console.log($sex.val());
-		console.log($marital_status.val());
-		
-	}); */
-	
-	
-	//전체데이터 입력보내긱.<input '.<input type="button" value="라디오테스트" class="testBt">'	
 	
 	
 });  // end for all function
@@ -231,7 +187,7 @@ $(function(){
 
 </script>
 
-
+<c:set var="ismater" value="${requestScope.im}"/>
 
 
 <body topmargin="0" leftmargin="0">
@@ -301,22 +257,34 @@ $(function(){
                             <tr>
                               <td width="107" height="26" align="right"><strong>한글이름 :</strong>&nbsp;</td>
                               <td width="310" height="26">
-                                <input type="text" name="textfield4">
+                                <%-- <input type="text" name="textfield4" placeholder="${ismater.kor_name}"> --%>
+                                ${ismater.kor_name}
                               </td>
                             </tr>
                             <tr>
                               <td height="26" align="right"><strong>영문이름 :&nbsp;</strong></td>
-                              <td height="26"><input type="text" name="textfield22"></td>
+                              <td height="26">
+                              
+                              <!-- <input type="text" name="textfield22" > -->
+                              ${ismater.eng_name}
+                              
+                              </td>
                             </tr>
                             <tr>
                               <td height="26" align="right"><strong>한문이름:</strong>&nbsp;</td>
-                              <td height="26"><input type="text" name="textfield34"></td>
+                              <td height="26">
+                              <!-- <input type="text" name="textfield34"> -->
+                              ${ismater.chn_name}
+                              </td>
                             </tr>
                             <tr>
                               <td height="26" align="right"><strong>주민등록번호 :</strong>&nbsp;</td>
-                              <td height="26"><input name="textfield323" type="text" size="15">
-      -
-        <input name="textfield3222" type="text" size="15"></td>
+                              
+                              <td height="26">
+                              ${ismater.jumin_no}
+                              <!-- <input name="textfield323" type="text" size="15" > 
+							      -
+							        <input name="textfield3222" type="text" size="15">--></td>
                             </tr>
                           </table></td>
                         </tr>
@@ -347,7 +315,7 @@ $(function(){
                             </td>
                             <td width="146">
 	                            <font color="#FF0000">
-	                         	   <img src="image/bt_search.gif" width="49" height="18"  name="btSearchFile">
+	                         	   <img src="image/bt_search.gif" width="49" height="18"  name="btSearchFile" >
 	                            </font>
                             </td>
                           </tr>
@@ -362,7 +330,7 @@ $(function(){
                       <table width="500" border="0" cellspacing="1" cellpadding="1">
                           <tr> 
                             <td width="102" align="right"><strong>생년월일 :&nbsp;</strong></td>
-                            <td width="391"><input name="textfield332" type="text" size="10">
+                            <td width="391"><input name="textfield332" type="text" size="10" >
                               년 
                               <input name="textfield3322" type="text" size="7">
                               월 
@@ -399,8 +367,8 @@ $(function(){
                             <input type="radio" name="marital_status" value="married">
                               기혼 
                               <input type="radio" name="marital_status" value="single">
-                              미혼 <input type="button" value="라디오테스트" class="testBt"></td>
-                           </tr>
+                              미혼    </td>
+                          </tr>
                         </table></td>
                     </tr>
                     <tr> 
@@ -514,7 +482,7 @@ $(function(){
         <tr>
           <td height="3" align="center"><table width="107" border="0" cellpadding="1" cellspacing="1">
             <tr>
-              <td width="49"><img src="image/bt_remove.gif" width="49" height="18" id="insert"></td>
+              <td width="49"><img src="image/bt_remove.gif" width="49" height="18" id="modify"></td>
               <td width="51"><img src="image/bt_cancel.gif" width="49" height="18" id ="cancel" ></td>
             </tr>
           </table>            </td>

@@ -14,6 +14,12 @@
 	</bean>
 
 
+	<!-- 파일업로드 path bean -->
+	<bean id="uploadPath" class="java.lang.String">
+    <!-- 파일업로드 디렉토리-->
+    <constructor-arg value="해당디렉토리"/>
+	</bean>
+
 	
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
 		<property name="contentType" value="application/json;charset=UTF-8" />

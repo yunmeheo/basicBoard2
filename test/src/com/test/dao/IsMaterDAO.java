@@ -18,7 +18,18 @@ public interface IsMaterDAO {
 	 */
 	public List<IsMater> selectAll(int a ,int b);
 	
-	public List<IsMater> selectAll();
+	/**
+	 * 모든사원 정보 불러오기
+	 * @return   모든사원정보
+	 */
+	public List<IsMater> selectAll(String searchItem, String searchValue);
 
-
+	
+	/**
+	 * 
+	 * @param searchItem 검색기준
+	 * @param searchValue  검색어
+	 * @return 사원정보
+	 */
+	/*public List<IsMater> selectByItem(String searchItem, String searchValue);*/
 }

@@ -19,7 +19,7 @@ public class IsMater {
     String phone;//    PHONE ;//               VARCHAR2(15) NULL,연락처
 	String email;//    EMAIL;//                VARCHAR2(50) NULL 이메일
 	String tech_lev;//    TECH_LEV ;//            VARCHAR2(10) NULL,기술등급
-	String drinkingCapacity;//             VARCHAR2(10) NULL,주량
+	String drink_Capacity;//             VARCHAR2(10) NULL,주량
 	/*String no;// iS_MATER;//	NO	Varchar2	4	-	-	1	-	-	-
 	String korName; //KOR_NAME;//	Varchar2	20	-	-	-	널 가능	-	-
 	String juminNo;//JUMIN_NO;//	Varchar2	14	-	-	-	널 가능	-	-
@@ -42,11 +42,33 @@ public class IsMater {
 	String email;//EMAIL;//	Varchar2	50	-
 */
 	
+	//수정시
+	public IsMater(String no,String image_name,
+			String bir, String sex, String marital_status, String work_date, String pay_type, String work_flag,
+			String join_type, String address, String phone, String email, String tech_lev, String drink_Capacity) {
+		super();
+		this.no = no;
+		this.image_name = image_name;
+		this.bir = bir;
+		this.sex = sex;
+		this.marital_status = marital_status;
+		this.work_date = work_date;
+		this.pay_type = pay_type;
+		this.work_flag = work_flag;
+		this.join_type = join_type;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.tech_lev = tech_lev;
+		this.drink_Capacity = drink_Capacity;
+	}
 	
 	
+	
+	//등록시
 	public IsMater(String kor_name, String eng_name, String chn_name, String jumin_no, String image_name,
 			String bir, String sex, String marital_status, String work_date, String pay_type, String work_flag,
-			String join_type, String address, String phone, String email, String tech_lev, String drinkingCapacity) {
+			String join_type, String address, String phone, String email, String tech_lev, String drink_Capacity) {
 		super();
 		this.kor_name = kor_name;
 		this.eng_name = eng_name;
@@ -64,7 +86,7 @@ public class IsMater {
 		this.phone = phone;
 		this.email = email;
 		this.tech_lev = tech_lev;
-		this.drinkingCapacity = drinkingCapacity;
+		this.drink_Capacity = drink_Capacity;
 	}
 	
 	public IsMater() {
@@ -175,11 +197,11 @@ public class IsMater {
 	public void setTech_lev(String tech_lev) {
 		this.tech_lev = tech_lev;
 	}
-	public String getDrinkingCapacity() {
-		return drinkingCapacity;
+	public String getdrink_Capacity() {
+		return drink_Capacity;
 	}
-	public void setDrinkingCapacity(String drinkingCapacity) {
-		this.drinkingCapacity = drinkingCapacity;
+	public void setdrink_Capacity(String drink_Capacity) {
+		this.drink_Capacity = drink_Capacity;
 	}
 	@Override
 	public String toString() {
@@ -187,7 +209,7 @@ public class IsMater {
 				+ ", jumin_no=" + jumin_no + ", image_name=" + image_name + ", bir=" + bir + ", sex=" + sex
 				+ ", marital_status=" + marital_status + ", work_date=" + work_date + ", pay_type=" + pay_type
 				+ ", work_flag=" + work_flag + ", join_type=" + join_type + ", address=" + address + ", phone=" + phone
-				+ ", email=" + email + ", tech_lev=" + tech_lev + ", drinkingCapacity=" + drinkingCapacity + "]";
+				+ ", email=" + email + ", tech_lev=" + tech_lev + ", drink_Capacity=" + drink_Capacity + "]";
 	}	
 
 	

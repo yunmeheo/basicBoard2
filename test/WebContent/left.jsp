@@ -36,8 +36,9 @@ $(function(){
 	             $("article").empty();
 	             $("article").html(responseData.trim()); 
 	         }
-	       }); // end ajax
-	       return false;
+	       });return false;
+	       
+	       
 	     });
      /* $a.click(function(){
        var url = $(this).attr("href");
